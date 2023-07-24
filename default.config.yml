@@ -31,7 +31,7 @@ dockitems_persist: #[]
 - name: "Terminal"
   path: "/Applications/Utilities/Terminal.app/"
   pos: 2
-- name: ""
+- name: "spacer"
   path: "'' --type spacer"
   pos: "--after Terminal"
 - name: "Messages"
@@ -46,7 +46,7 @@ dockitems_persist: #[]
 - name: "Telegram"
   path: "/Applications/Telegram.app/"
   pos: 6
-- name: ""
+- name: "spacer"
   path: "'' --type spacer"
   pos: "--after Terminal"
 - name: "Applications"
