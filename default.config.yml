@@ -23,6 +23,7 @@ dockitems_remove: #[]
   - Pages
   - Calendar
   - Safari
+  - Mail
   - Applications
   - Downloads
   - Dropbox
@@ -36,27 +37,33 @@ dockitems_persist: #[]
 - name: "Terminal"
   path: "/Applications/Utilities/Terminal.app/"
   pos: 2
+- name: "Mail"
+  path: "/Applications/Mail.app/"
+  pos: 3
+- name: "Microsoft Outlook"
+  path: "/Applications/Microsoft Outlook.app/"
+  pos: 4
 - name: "Messages"
   path: "/Applications/Messages.app/"
-  pos: 3
+  pos: 5
 - name: "Mattermost"
   path: "/Applications/Mattermost.app/"
-  pos: 4
+  pos: 6
 - name: "Signal"
   path: "/Applications/Signal.app/"
-  pos: 5
+  pos: 7
 - name: "Telegram"
   path: "/Applications/Telegram.app/"
-  pos: 6
+  pos: 8
 - name: "Safari"
   path: "/Applications/Safari.app/"
-  pos: 7
+  pos: 9
 - name: "Firefox"
   path: "/Applications/Firefox.app/"
-  pos: 8
+  pos: 10
 - name: "Google Chrome"
   path: "/Applications/Google Chrome.app/"
-  pos: 9
+  pos: 11
 - name: "Applications"
   path: "'/Applications --view list --display folder'"
   pos: 97
