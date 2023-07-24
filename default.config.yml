@@ -109,6 +109,7 @@ homebrew_cask_apps:
   #- enpass Rosetta required
   - firefox
   - google-chrome
+  - htop
   - istat-menus
   - loopback
   - mattermost
