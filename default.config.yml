@@ -54,7 +54,6 @@ homebrew_installed_packages:
   - openssl
   - wget
   - zsh-history-substring-search
-  - dockerutil
 
 homebrew_taps:
   - homebrew/core
