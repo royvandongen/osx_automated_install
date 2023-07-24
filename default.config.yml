@@ -101,6 +101,7 @@ homebrew_cask_apps:
   - signal
   - spotify
   - sublime-text
+  - telegram
   - tidal
   - visual-studio-code
   - vlc
