@@ -42,7 +42,7 @@ dockitems_persist: #[]
 - name: "Signal"
   path: "/Applications/Signal.app/"
   pos: 5
-- name: "Telegram:
+- name: "Telegram"
   path: "/Applications/Telegram.app/"
   pos: 6
 - name: "'' --type spacer"
