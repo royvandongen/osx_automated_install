@@ -58,10 +58,13 @@ dockitems_persist: #[]
   path: "/Applications/Google Chrome.app/"
   pos: 9
 - name: "Applications"
-  path: "'~/Applications --view list --display folder'"
-  pos: 98
+  path: "'/Applications --view list --display folder'"
+  pos: 97
 - name: "Downloads"
   path: "'~/Downloads --view list  --display folder'"
+  pos: 98
+- name: "Documents"
+  path: "'~/Documents --view list  --display folder'"
   pos: 99
 
 dotfiles_repo: https://github.com/royvandongen/dotfiles.git
