@@ -86,6 +86,7 @@ homebrew_cask_apps:
   #-yt-dlp This fails for a strange reason, but can be installed manually
 
 osx_script: "~/.osx --no-restart"
+osx_scriptfile: "~/.osx"
 
 # Set to 'true' to configure Sublime Text.
 configure_sublime: true
