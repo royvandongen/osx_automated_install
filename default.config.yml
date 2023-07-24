@@ -66,7 +66,7 @@ homebrew_cask_apps:
   - balenaetcher
   - docker
   - dropbox
-  - enpass
+  #- enpass Rosetta required
   - firefox
   - google-chrome
   - istat-menus
@@ -85,7 +85,7 @@ homebrew_cask_apps:
   - visual-studio-code
   - vlc
   - wireshark
-  - yt-dlp
+  #-yt-dlp This fails for a strange reason, but can be installed manually
 
 osx_script: "~/.osx --no-restart"
 
