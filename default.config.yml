@@ -77,7 +77,7 @@ homebrew_cask_apps:
   - mqtt-explorer
   - nextcloud
   - obs
-  - private-internet-access
+  #- private-internet-access
   - signal
   - spotify
   - sublime-text
