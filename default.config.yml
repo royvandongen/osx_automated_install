@@ -46,7 +46,8 @@ dockitems_persist: #[]
 - name: "Telegram"
   path: "/Applications/Telegram.app/"
   pos: 6
-- name: "'' --type spacer"
+- name: ""
+  path: "'' --type spacer"
   pos: "--after Terminal"
 - name: "Applications"
   path: "~/Applications --view list"
