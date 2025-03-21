@@ -96,6 +96,11 @@ homebrew_installed_packages:
   - wget
   - zsh-history-substring-search
 
+  - k9s
+  - kubelogin
+  - gardener/tap/gardenctl-v2
+  - gardener/tap/gardenlogin
+
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
