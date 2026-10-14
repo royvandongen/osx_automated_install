@@ -7,15 +7,17 @@
 
   pre_tasks:
     - name: Include playbook configuration.
-      include_vars: "{{ item }}"
-      with_fileglob:
-        - "{{ playbook_dir }}/config.yml"
+      ansible.builtin.include_vars: "{{ item }}"
+      loop: "{{ query('fileglob', playbook_dir + '/config.yml') }}"
       tags: ['always']
 
   roles:
     - role: elliotweiser.osx-command-line-tools
     - role: geerlingguy.mac.homebrew
       tags: ['homebrew']
+    - role: geerlingguy.mac.mas
+      when: mas_installed_apps | length > 0
+      tags: ['mas']
     - role: geerlingguy.dotfiles
       when: configure_dotfiles
       tags: ['dotfiles']
@@ -24,7 +26,12 @@
       tags: ['dock']
 
   tasks:
-    
-    - import_tasks: tasks/osx.yml
+    - name: Add Dock spacers
+      ansible.builtin.import_tasks: tasks/dock-spacers.yml
+      when: configure_dock
+      tags: ['dock']
+
+    - name: Configure macOS defaults
+      ansible.builtin.import_tasks: tasks/osx.yml
       when: configure_osx
       tags: ['osx']
