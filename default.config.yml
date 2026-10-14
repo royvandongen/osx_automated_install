@@ -121,7 +121,7 @@ homebrew_cask_apps:
   - visual-studio-code
   - vlc
   - wireshark-app
-  - logi-options+
+  - logi-options-plus
   - cleanmymac
   - chatgpt
   - claude
