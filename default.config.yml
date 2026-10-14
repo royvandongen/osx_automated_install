@@ -120,7 +120,7 @@ homebrew_cask_apps:
   - sublime-text
   - visual-studio-code
   - vlc
-  - wireshark
+  - wireshark-app
   - logi-options+
   - cleanmymac
   - chatgpt
