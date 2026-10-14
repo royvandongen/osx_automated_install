@@ -112,7 +112,7 @@ homebrew_cask_apps:
   - google-chrome
   - istat-menus
   - loopback
-  #- mqtt-explorer # issues with Gatekeeper Check after 2026-09-01
+  - microsoft-teams
   - nextcloud
   - obs
   - signal
