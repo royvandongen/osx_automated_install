@@ -114,8 +114,6 @@ homebrew_installed_packages:
   - wireguard-tools
 
 homebrew_taps:
-  - homebrew/core
-  - homebrew/cask
   - siderolabs/tap
 
 homebrew_cask_appdir: /Applications
@@ -132,7 +130,6 @@ homebrew_cask_apps:
   - mattermost
   - microsoft-office
   - microsoft-teams
-  - microsoft-remote-desktop
   - mqtt-explorer
   - nextcloud
   - obs
