@@ -7,30 +7,8 @@ configure_osx: true
 
 # Set to 'true' to configure the Dock via dockutil.
 configure_dock: true
-dockitems_remove: #[]
-  - Launchpad
-  - TV
-  - Podcasts
-  - 'App Store'
-  - Maps
-  - Photos
-  - FaceTime
-  - Notes
-  - Freeform
-  - Music
-  - Keynote
-  - Numbers
-  - Pages
-  - Calendar
-  - Safari
-  - Mail
-  - Applications
-  - Downloads
-  - Dropbox
+dockitems_remove: []
 dockitems_persist: #[]
-# - name: "Sublime Text"
-#   path: "/Applications/Sublime Text.app/"
-#   pos: 5
 - name: "System Settings"
   path: "/Applications/System Settings.app/"
   pos: 1
