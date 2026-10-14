@@ -115,7 +115,7 @@ homebrew_cask_apps:
   - mattermost
   - microsoft-office
   - microsoft-teams
-  - mqtt-explorer
+  #- mqtt-explorer # issues with Gatekeeper Check after 2026-09-01
   - nextcloud
   - obs
   - signal
