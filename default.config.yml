@@ -147,6 +147,7 @@ mas_installed_apps:
   - { id: 1352778147, name: "Bitwarden" }
   - { id: 900392332, name: "DaVinci Resolve Studio" }
   - { id: 732710998, name: "Enpass" }
+  - { id: 1451685025, name: "WireGuard" }
 
 osx_script: "~/.osx --no-restart"
 osx_scriptfile: "~/.osx"
