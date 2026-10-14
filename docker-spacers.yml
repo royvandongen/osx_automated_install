@@ -1,0 +1,13 @@
+---
+- name: Count small spacers in the Dock
+  ansible.builtin.shell: defaults read com.apple.dock persistent-apps | grep -c small-spacer-tile || true
+  register: dock_spacer_count
+  changed_when: false
+  become: false
+
+- name: Add small spacer after {{ dock_spacer_after }}
+  ansible.builtin.command: >
+    dockutil --add '' --type small-spacer --section apps
+    --after '{{ dock_spacer_after }}'
+  when: dock_spacer_count.stdout | int == 0
+  become: false
