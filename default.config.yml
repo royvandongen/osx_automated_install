@@ -84,6 +84,7 @@ dotfiles_files:
   - .vimrc
 
 homebrew_installed_packages:
+  - mas
   - autoconf
   - bash-completion
   - doxygen
@@ -95,26 +96,29 @@ homebrew_installed_packages:
   - openssl
   - wget
   - zsh-history-substring-search
-
+  - ffmpeg
+  - htop
+  - btop
+  - yt-dlp
+  - iperf3
   - k9s
   - kubelogin
-  - gardener/tap/gardenctl-v2
-  - gardener/tap/gardenlogin
+  - wireguard-tools
 
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
+  - siderolabs/tap
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - audacity
   - balenaetcher
-  - docker
+  - docker-desktop
   - dropbox
-  #- enpass Rosetta required
+  #- enpass install via MAS
   - firefox
   - google-chrome
-  - htop
   - istat-menus
   - loopback
   - mattermost
@@ -123,20 +127,21 @@ homebrew_cask_apps:
   - mqtt-explorer
   - nextcloud
   - obs
-  #- private-internet-access
   - signal
   - spotify
   - sublime-text
   - telegram
-  - tidal
   - visual-studio-code
   - vlc
   - wireshark
   - ffmpeg
   - microsoft-remote-desktop
-  - logitech-options
+  - logi-options+
   - cleanmymac
-  #-yt-dlp This fails for a strange reason, but can be installed manually
+  - siderolabs/tap/talosctl
+
+mas_installed_apps:
+  - { id: 732710998, name: "Enpass" }
 
 osx_script: "~/.osx --no-restart"
 osx_scriptfile: "~/.osx"
