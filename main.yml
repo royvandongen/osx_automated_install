@@ -1,16 +1,3 @@
----
-- name: Configure host.
-  hosts: all
-
-  vars_files:
-    - default.config.yml
-
-  pre_tasks:
-    - name: Include playbook configuration.
-      ansible.builtin.include_vars: "{{ item }}"
-      loop: "{{ query('fileglob', playbook_dir + '/config.yml') }}"
-      tags: ['always']
-
   roles:
     - role: elliotweiser.osx-command-line-tools
     - role: geerlingguy.mac.homebrew
@@ -21,11 +8,19 @@
     - role: geerlingguy.dotfiles
       when: configure_dotfiles
       tags: ['dotfiles']
-    - role: geerlingguy.mac.dock
+
+  tasks:
+    - name: Reset Dock if it differs from config
+      ansible.builtin.import_tasks: tasks/dock-reset.yml
       when: configure_dock
       tags: ['dock']
 
-  tasks:
+    - name: Configure Dock
+      ansible.builtin.import_role:
+        name: geerlingguy.mac.dock
+      when: configure_dock
+      tags: ['dock']
+
     - name: Add Dock spacers
       ansible.builtin.import_tasks: tasks/dock-spacers.yml
       when: configure_dock
