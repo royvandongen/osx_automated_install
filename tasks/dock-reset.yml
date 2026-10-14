@@ -1,0 +1,16 @@
+---
+- name: Read current Dock items
+  ansible.builtin.command: dockutil --list
+  register: dock_current
+  changed_when: false
+  become: false
+
+- name: Clear the Dock when it differs from dockitems_persist
+  ansible.builtin.command: dockutil --remove all --no-restart
+  when: >
+    (dock_current.stdout_lines
+     | map('split', '\t')
+     | selectattr(2, 'in', ['persistentApps', 'persistentOthers'])
+     | map(attribute=0) | reject('equalto', '') | sort)
+    != (dockitems_persist | map(attribute='name') | sort)
+  become: false
