@@ -77,6 +77,11 @@ dockitems_persist: #[]
   path: "'~/Documents --view list  --display folder'"
   pos: 99
 
+dock_spacers_after:
+  - "System Settings"
+  - "Enpass"
+
+
 dotfiles_repo: https://github.com/royvandongen/dotfiles.git
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/Development/GitHub/dotfiles
