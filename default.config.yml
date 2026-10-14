@@ -136,6 +136,8 @@ mas_installed_apps:
   - { id: 900392332, name: "DaVinci Resolve Studio" }
   - { id: 732710998, name: "Enpass" }
   - { id: 1451685025, name: "WireGuard" }
+  - { id: 877615577, name: "Serial" }
+  - { id: 1295203466, name: "Windows App" }
 
 osx_script: "~/.osx --no-restart"
 osx_scriptfile: "~/.osx"
