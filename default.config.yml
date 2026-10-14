@@ -45,6 +45,12 @@ dockitems_persist: #[]
 - name: "Enpass"
   path: "/Applications/Enpass.app/"
   pos: 13
+- name: "ChatGPT"
+  path: "/Applications/ChatGPT.app/"
+  pos: 15
+- name: "Claude"
+  path: "/Applications/Claude.app/"
+  pos: 16
 - name: "Applications"
   path: "'/Applications --view list --display folder'"
   pos: 97
@@ -58,6 +64,7 @@ dockitems_persist: #[]
 dock_spacers_after:
   - "System Settings"
   - "Enpass"
+  - "Claude"
 
 
 dotfiles_repo: https://github.com/royvandongen/dotfiles.git
@@ -120,6 +127,9 @@ homebrew_cask_apps:
   - wireshark
   - logi-options+
   - cleanmymac
+  - chatgpt
+  - claude
+  - claude-code
 
 mas_installed_apps:
   - { id: 1352778147, name: "Bitwarden" }
