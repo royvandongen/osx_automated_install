@@ -126,6 +126,7 @@ homebrew_cask_apps:
   - chatgpt
   - claude
   - claude-code
+  - displaylink
 
 mas_installed_apps:
   - { id: 1352778147, name: "Bitwarden" }
