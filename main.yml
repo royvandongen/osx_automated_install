@@ -2,6 +2,11 @@
 - name: Configure host.
   hosts: all
 
+  vars_prompt:
+    - name: ansible_become_password
+      prompt: "macOS password (for sudo)"
+      private: true
+
   vars_files:
     - default.config.yml
 
