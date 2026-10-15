@@ -6,7 +6,7 @@
     - default.config.yml
 
   pre_tasks:
-    - name: Include playbook configuration.
+    - name: Install New System | PreTask | Include playbook configuration.
       ansible.builtin.include_vars: "{{ item }}"
       loop: "{{ query('fileglob', playbook_dir + '/config.yml') }}"
       tags: ['always']
@@ -23,23 +23,28 @@
       tags: ['dotfiles']
 
   tasks:
-    - name: Reset Dock if it differs from config
+    - name: Install New System | Dock | Install trusted third-party formulae
+      ansible.builtin.import_tasks: tasks/homebrew-trusted.yml
+      when: homebrew_trusted_formulae | default([]) | length > 0
+      tags: ['homebrew']
+  
+    - name: Install New System | Dock | Reset Dock if it differs from config
       ansible.builtin.import_tasks: tasks/dock-reset.yml
       when: configure_dock
       tags: ['dock']
 
-    - name: Configure Dock
+    - name: Install New System | Dock | Configure Dock
       ansible.builtin.import_role:
         name: geerlingguy.mac.dock
       when: configure_dock
       tags: ['dock']
 
-    - name: Add Dock spacers
+    - name: Install New System | Dock Spacing | Add Dock spacers
       ansible.builtin.import_tasks: tasks/dock-spacers.yml
       when: configure_dock
       tags: ['dock']
 
-    - name: Configure macOS defaults
+    - name: Install New System | OSX Tasks | Configure macOS defaults
       ansible.builtin.import_tasks: tasks/osx.yml
       when: configure_osx
       tags: ['osx']
