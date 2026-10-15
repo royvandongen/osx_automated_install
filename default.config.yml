@@ -97,10 +97,8 @@ homebrew_installed_packages:
   - k9s
   - kubelogin
   - wireguard-tools
-  - siderolabs/tap/talosctl
 
-homebrew_taps:
-  - siderolabs/tap
+homebrew_taps: []
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
@@ -127,6 +125,9 @@ homebrew_cask_apps:
   - claude
   - claude-code
   - displaylink
+
+homebrew_trusted_formulae:
+  - siderolabs/tap/talosctl
 
 mas_installed_apps:
   - { id: 1352778147, name: "Bitwarden" }
@@ -156,7 +157,6 @@ sublime_package_control:
   - "SublimeLinter"
   - "SublimeLinter-contrib-yamllint"
   - "Dockerfile Syntax Highlighting"
-
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []
