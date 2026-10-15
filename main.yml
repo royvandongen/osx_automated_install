@@ -2,6 +2,9 @@
 - name: Configure host.
   hosts: all
 
+  environment:
+    PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
+
   vars_prompt:
     - name: ansible_become_password
       prompt: "macOS password (for sudo)"
