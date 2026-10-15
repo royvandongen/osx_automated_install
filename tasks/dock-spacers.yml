@@ -1,18 +1,16 @@
 ---
-- name: Count small spacers in the Dock
+- name: Install New System | Dock Spacing | Count small spacers in the Dock
   ansible.builtin.shell: defaults read com.apple.dock persistent-apps | grep -c small-spacer-tile || true
   register: dock_spacer_count
   changed_when: false
-  become: false
 
-- name: Remove existing spacers before re-adding
+- name: Install New System | Dock Spacing | Remove existing spacers before re-adding
   ansible.builtin.command: >
     dockutil --remove spacer-tiles
     {{ '--no-restart' if dock_spacers_after | length > 0 else '' }}
   when: dock_spacer_count.stdout | int != dock_spacers_after | length
-  become: false
 
-- name: Add small spacer after {{ item }}
+- name: Install New System | Dock Spacing | Add small spacer after {{ item }}
   ansible.builtin.command: >
     dockutil --add '' --type small-spacer --section apps
     --after '{{ item }}'
@@ -21,4 +19,3 @@
   loop_control:
     extended: true
   when: dock_spacer_count.stdout | int != dock_spacers_after | length
-  become: false
