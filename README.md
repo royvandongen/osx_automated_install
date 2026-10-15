@@ -17,7 +17,7 @@ This text is from Jeff Geerlings version of this repo @ [mac-dev-playbook](https
 
   4. Sign in to the App Store app (needed for `mas` to install App Store apps).
   5. Run `ansible-galaxy install -r requirements.yml` to install the required roles and collections.
-  6. Run `ansible-playbook main.yml --ask-become-pass`. Enter your macOS account password when prompted for the 'BECOME' password.
+  6. Run `caffeinate -simsu ansible-playbook main.yml`. Enter your macOS account password when prompted for the 'BECOME' password.
 
 In a new terminal, run `source .venv/bin/activate` again before using `ansible-playbook`.
 
