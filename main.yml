@@ -18,7 +18,33 @@
       ansible.builtin.include_vars: "{{ item }}"
       loop: "{{ query('fileglob', playbook_dir + '/config.yml') }}"
       tags: ['always']
+      
+    - name: Install New System | PreTask | Check dotfiles clone for local changes
+      ansible.builtin.command: git status --porcelain --untracked-files=no
+      args:
+        chdir: "{{ dotfiles_repo_local_destination }}"
+      register: dotfiles_status
+      changed_when: false
+      failed_when: false
+      tags: ['dotfiles']
 
+    - name: Install New System | PreTask | Ask whether to overwrite local dotfiles changes
+      ansible.builtin.pause:
+        prompt: |
+          Local changes in {{ dotfiles_repo_local_destination }}:
+          {{ dotfiles_status.stdout }}
+          Overwrite them with the version from GitHub? (yes/no)
+      register: dotfiles_overwrite
+      when: dotfiles_status.stdout | default('') | length > 0
+      tags: ['dotfiles']
+
+    - name: Install New System | PreTask | Discard local dotfiles changes
+      ansible.builtin.command: git reset --hard
+      args:
+        chdir: "{{ dotfiles_repo_local_destination }}"
+      when: (dotfiles_overwrite.user_input | default('') | lower) == 'yes'
+      tags: ['dotfiles']
+      
   roles:
     - role: elliotweiser.osx-command-line-tools
     - role: geerlingguy.mac.homebrew
