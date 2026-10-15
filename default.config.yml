@@ -145,7 +145,7 @@ mas_installed_apps:
   - { id: 1295203466, name: "Windows App" }
   - { id: 877615577, name: "Serial" }
   
-osx_script: "~/.osx --no-restart"
+osx_script: "bash ~/.osx --no-restart"
 osx_scriptfile: "~/.osx"
 
 # Set to 'true' to configure Sublime Text.
