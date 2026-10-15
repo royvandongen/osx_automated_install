@@ -1,12 +1,10 @@
 ---
 # TODO: Use sudo once .osx can be run via root with no user interaction.
-- name: Set executable bit on osx script
-  #become: false
+- name: Install New System | OSX Scripting | Set executable bit on osx script
   ansible.builtin.file:
     dest: "{{ osx_scriptfile }}"
     mode: a+x
 
-- name: Run .osx dotfiles.
-  #become: false
+- name: Install New System | OSX Scripting | Run .osx dotfiles.
   ansible.builtin.command: "{{ osx_script }}"
   changed_when: false
