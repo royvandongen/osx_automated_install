@@ -3,38 +3,38 @@
   ansible.builtin.command:
     cmd: osascript
     stdin: |
-      set P to "{{ terminal_profile }}"
-      set F to "{{ playbook_dir }}/files/terminal/{{ terminal_profile }}.terminal"
+      set profileName to "{{ terminal_profile }}"
+      set profileFile to "{{ playbook_dir }}/files/terminal/{{ terminal_profile }}.terminal"
       tell application "Terminal"
-        set before to id of every window
-        set moved to {}
+        set oldWindowIDs to id of every window
+        set movedTabs to {}
         repeat with w in windows
           repeat with t in tabs of w
-            if name of current settings of t is P then
+            if name of current settings of t is profileName then
               set current settings of t to settings set "Basic"
-              set end of moved to t
+              set end of movedTabs to t
             end if
           end repeat
         end repeat
         set default settings to settings set "Basic"
         set startup settings to settings set "Basic"
-        if exists settings set P then delete settings set P
+        if exists settings set profileName then delete settings set profileName
       end tell
-      do shell script "open " & quoted form of F
+      do shell script "open " & quoted form of profileFile
       repeat 20 times
         tell application "Terminal"
-          if exists settings set P then exit repeat
+          if exists settings set profileName then exit repeat
         end tell
         delay 0.5
       end repeat
       tell application "Terminal"
         repeat with w in windows
-          if before does not contain (id of w) then close w
+          if oldWindowIDs does not contain (id of w) then close w
         end repeat
-        set default settings to settings set P
-        set startup settings to settings set P
-        repeat with t in moved
-          set current settings of t to settings set P
+        set default settings to settings set profileName
+        set startup settings to settings set profileName
+        repeat with t in movedTabs
+          set current settings of t to settings set profileName
         end repeat
       end tell
   changed_when: false
