@@ -1,30 +1,71 @@
 ---
-- name: Install New System | Terminal Modification | Get current default Terminal profile
+- name: Install New System | Terminal | Profile file checksum
+  ansible.builtin.stat:
+    path: "{{ playbook_dir }}/files/terminal/{{ terminal_profile }}.terminal"
+    checksum_algorithm: sha256
+  register: terminal_file
+  become: false
+
+- name: Install New System | Terminal | Read last applied checksum
+  ansible.builtin.command: cat "{{ terminal_marker }}"
+  register: terminal_applied
+  changed_when: false
+  failed_when: false
+  become: false
+
+- name: Install New System | Terminal | Read current default profile
   ansible.builtin.command: defaults read com.apple.Terminal "Default Window Settings"
   register: terminal_default
   changed_when: false
   failed_when: false
   become: false
 
-- name: Install New System | Terminal Modification | Import Terminal profile
-  ansible.builtin.command: open "{{ playbook_dir }}/files/terminal/{{ terminal_profile }}.terminal"
-  when: terminal_default.stdout != terminal_profile
-  become: false
-
-- name: Install New System | Terminal Modification | Set profile as default and close import window
+- name: Install New System | Terminal | Replace profile and set as default
   ansible.builtin.command:
     cmd: osascript
     stdin: |
+      set P to "{{ terminal_profile }}"
+      set F to "{{ terminal_file.stat.path }}"
       tell application "Terminal"
-        repeat with w in (every window)
-          if name of current settings of selected tab of w is "{{ terminal_profile }}" then close w
+        set before to id of every window
+        set moved to {}
+        repeat with w in windows
+          repeat with t in tabs of w
+            if name of current settings of t is P then
+              set current settings of t to settings set "Basic"
+              set end of moved to t
+            end if
+          end repeat
         end repeat
-        set default settings to settings set "{{ terminal_profile }}"
-        set startup settings to settings set "{{ terminal_profile }}"
+        set default settings to settings set "Basic"
+        set startup settings to settings set "Basic"
+        if exists settings set P then delete settings set P
       end tell
-  register: terminal_set
-  retries: 5
-  delay: 2
-  until: terminal_set.rc == 0
-  when: terminal_default.stdout != terminal_profile
+      do shell script "open " & quoted form of F
+      repeat 20 times
+        tell application "Terminal"
+          if exists settings set P then exit repeat
+        end tell
+        delay 0.5
+      end repeat
+      tell application "Terminal"
+        repeat with w in windows
+          if before does not contain (id of w) then close w
+        end repeat
+        set default settings to settings set P
+        set startup settings to settings set P
+        repeat with t in moved
+          set current settings of t to settings set P
+        end repeat
+      end tell
+  when: >-
+    terminal_default.stdout != terminal_profile
+    or terminal_applied.stdout != terminal_file.stat.checksum
+  become: false
+
+- name: Install New System | Terminal | Remember applied checksum
+  ansible.builtin.copy:
+    content: "{{ terminal_file.stat.checksum }}"
+    dest: "{{ terminal_marker }}"
+    mode: "0644"
   become: false
