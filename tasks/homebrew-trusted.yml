@@ -1,0 +1,11 @@
+---
+- name: Install New System | HomeBrew | Trust third-party Homebrew formulae
+  ansible.builtin.command: "{{ homebrew_brew_bin_path }}/brew trust --formula {{ item }}"
+  loop: "{{ homebrew_trusted_formulae }}"
+  register: brew_trust
+  changed_when: "'Already trusted' not in brew_trust.stdout"
+
+- name: Install New System | HomeBrew | Install trusted third-party formulae
+  community.general.homebrew:
+    name: "{{ homebrew_trusted_formulae }}"
+    state: present
