@@ -14,43 +14,43 @@ dockitems_persist: #[]
   pos: 1
 - name: "Terminal"
   path: "/Applications/Utilities/Terminal.app/"
-  pos: 3
+  pos: 11
 - name: "Mail"
   path: "/Applications/Mail.app/"
-  pos: 4
+  pos: 12
 - name: "Microsoft Outlook"
   path: "/Applications/Microsoft Outlook.app/"
-  pos: 5
+  pos: 13
 - name: "Messages"
   path: "/Applications/Messages.app/"
-  pos: 6
+  pos: 14
 - name: "Mattermost"
   path: "/Applications/Mattermost.app/"
-  pos: 7
+  pos: 15
 - name: "Signal"
   path: "/Applications/Signal.app/"
-  pos: 8
+  pos: 16
 - name: "Telegram"
   path: "/Applications/Telegram.app/"
-  pos: 9
+  pos: 17
 - name: "Safari"
   path: "/Applications/Safari.app/"
-  pos: 10
+  pos: 21
 - name: "Firefox"
   path: "/Applications/Firefox.app/"
-  pos: 11
+  pos: 22
 - name: "Google Chrome"
   path: "/Applications/Google Chrome.app/"
-  pos: 12
+  pos: 23
 - name: "Enpass"
   path: "/Applications/Enpass.app/"
-  pos: 13
+  pos: 31
 - name: "ChatGPT"
   path: "/Applications/ChatGPT.app/"
-  pos: 15
+  pos: 41
 - name: "Claude"
   path: "/Applications/Claude.app/"
-  pos: 16
+  pos: 42
 - name: "Applications"
   path: "'/Applications --view list --display folder'"
   pos: 97
@@ -63,9 +63,10 @@ dockitems_persist: #[]
 
 dock_spacers_after:
   - "System Settings"
+  - "Terminal"
+  - "Telegram"
+  - "Google Chrome"
   - "Enpass"
-  - "Claude"
-
 
 dotfiles_repo: https://github.com/royvandongen/dotfiles.git
 dotfiles_repo_accept_hostkey: true
