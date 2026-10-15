@@ -11,11 +11,17 @@
   when: terminal_default.stdout != terminal_profile
   become: false
 
-- name: Install New System | Terminal Modification | Set Terminal profile as default
-  ansible.builtin.command: >
-    osascript
-    -e 'tell application "Terminal" to set default settings to settings set "{{ terminal_profile }}"'
-    -e 'tell application "Terminal" to set startup settings to settings set "{{ terminal_profile }}"'
+- name: Install New System | Terminal Modification | Set profile as default and close import window
+  ansible.builtin.command:
+    cmd: osascript
+    stdin: |
+      tell application "Terminal"
+        repeat with w in (every window)
+          if name of current settings of selected tab of w is "{{ terminal_profile }}" then close w
+        end repeat
+        set default settings to settings set "{{ terminal_profile }}"
+        set startup settings to settings set "{{ terminal_profile }}"
+      end tell
   register: terminal_set
   retries: 5
   delay: 2
