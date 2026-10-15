@@ -1,31 +1,10 @@
 ---
-- name: Install New System | Terminal | Profile file checksum
-  ansible.builtin.stat:
-    path: "{{ playbook_dir }}/files/terminal/{{ terminal_profile }}.terminal"
-    checksum_algorithm: sha256
-  register: terminal_file
-  become: false
-
-- name: Install New System | Terminal | Read last applied checksum
-  ansible.builtin.command: cat "{{ terminal_marker }}"
-  register: terminal_applied
-  changed_when: false
-  failed_when: false
-  become: false
-
-- name: Install New System | Terminal | Read current default profile
-  ansible.builtin.command: defaults read com.apple.Terminal "Default Window Settings"
-  register: terminal_default
-  changed_when: false
-  failed_when: false
-  become: false
-
 - name: Install New System | Terminal | Replace profile and set as default
   ansible.builtin.command:
     cmd: osascript
     stdin: |
       set P to "{{ terminal_profile }}"
-      set F to "{{ terminal_file.stat.path }}"
+      set F to "{{ playbook_dir }}/files/terminal/{{ terminal_profile }}.terminal"
       tell application "Terminal"
         set before to id of every window
         set moved to {}
@@ -58,14 +37,5 @@
           set current settings of t to settings set P
         end repeat
       end tell
-  when: >-
-    terminal_default.stdout != terminal_profile
-    or terminal_applied.stdout != terminal_file.stat.checksum
-  become: false
-
-- name: Install New System | Terminal | Remember applied checksum
-  ansible.builtin.copy:
-    content: "{{ terminal_file.stat.checksum }}"
-    dest: "{{ terminal_marker }}"
-    mode: "0644"
+  changed_when: false
   become: false
