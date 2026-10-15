@@ -1,0 +1,20 @@
+---
+- name: Install New System | Terminal Modification | Get current default Terminal profile
+  ansible.builtin.command: defaults read com.apple.Terminal "Default Window Settings"
+  register: terminal_default
+  changed_when: false
+  failed_when: false
+
+- name: Install New System | Terminal Modification | Import Terminal profile
+  ansible.builtin.command: open "{{ playbook_dir }}/files/terminal/{{ terminal_profile }}.terminal"
+  when: terminal_default.stdout != terminal_profile
+
+- name: Install New System | Terminal Modification | Set Terminal profile as default
+  community.general.osx_defaults:
+    domain: com.apple.Terminal
+    key: "{{ item }}"
+    type: string
+    value: "{{ terminal_profile }}"
+  loop:
+    - Default Window Settings
+    - Startup Window Settings
